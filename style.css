@@ -1,0 +1,148 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+
+/* ヘッダーを左右分けて横並び */
+header {
+    flex-direction: column;      /* ← ロゴの下にメニュー */
+    background-color: #ffffff;
+    color: #330000;
+    border-bottom: 4px solid #778899;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items:flex-start;     /* ← 左寄せ */
+  }
+  
+  /* ロゴ */
+  .logo {
+    margin: 0;
+    font-size: 1.5em;
+  }
+  .logo a {
+    text-decoration: none;
+    color: inherit;              /* ← 元の色のまま（#330000） */
+  }
+  .logo-img {
+    height: 80px;
+    object-fit: contain;
+  }
+  
+
+
+  /* メニューバー：横並びに */
+  .menu-bar {
+    display: flex;
+    gap: 24px;
+    justify-content: flex-start;  /*  左寄せにする */
+    margin-top: 10px;
+  }
+
+  
+  /* メニューリンク */
+  .menu-bar a {
+    color: #330000;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;/* ← 最初は透明な線 */
+    transition: border-color 0.3s ease;       /* ← 下線だけアニメーション */
+  }
+  
+  /* ホバー時の演出 */
+  .menu-bar a:hover {
+    border-bottom-color: #2F4F4F;
+  }
+  
+
+
+
+  main {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: auto;
+  }
+  
+  footer {
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+  }
+
+ 
+ 
+ 
+  /* フォント*/
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 400;
+  }
+  
+  h1, h2, h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  
+  .menu-bar a {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  
+
+ 
+
+
+  .slider-slide {
+    width: 100vw;
+    height: 50vh;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .slider-track {
+    display: flex;
+    width: 300vw; /* ← 3枚分 */
+    transition: transform 0.8s ease;
+  }
+  
+  .slide-img {
+    width: 100vw;
+    height: 50vh;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  
+  /* ドット */
+  .slider-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+  }
+  
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+  }
+  
+  .dot.active {
+    background-color: white;
+    transform: scale(1.3);
+  }
+  
