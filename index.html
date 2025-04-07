@@ -3,49 +3,113 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>サンプル株式会社</title>
+  <title>会社概要 | Cariaid</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  
-    <!-- ヘッダー -->
+
     <header>
-        <h1 class="logo">
-            <a href="index.html">
-              <img src="HOME_images/logo_kari.png" alt="ロゴ" class="logo-img">
-            </a>
-          </h1>
+      <h1 class="logo">
+        <a href="index.html">
+          <img src="HOME_images/logo-transparent.png" alt="Cariaid ロゴ" class="logo-img">
+        </a>
+      </h1>
       <nav class="menu-bar">
-        <a href="about.html">会社概要</a>
         <a href="services.html">サービス紹介</a>
+        <a href="guide.html">学生ガイド</a>
+        <a href="internships.html">有料インターン</a>
+        <a href="about.html">会社概要</a>
         <a href="contact.html">お問い合わせ</a>
       </nav>
     </header>
 
     <div class="slider-slide">
-        <div class="slider-track">
-          <img src="HOME_images/Image1.png" class="slide-img" alt="画像1">
-          <img src="HOME_images/Image2.png" class="slide-img" alt="画像2">
-          <img src="HOME_images/Image3.png" class="slide-img" alt="画像3">
+      <div class="slider-track">
+        <div class="slide-item">
+          <img src="HOME_images/Cariad Image F.png" class="slide-img" alt="Slide 1">
+          <div class="slide-caption slide-caption-top">世界と、地方をつなぐ。</div>
+          <div class="slide-caption">優秀な留学生と出会う、新しい採用のかたち。</div>
         </div>
-        <!-- ドット -->
-        <div class="slider-dots">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
+        <div class="slide-item">
+          <img src="HOME_images/Image2.png" class="slide-img" alt="Slide 2">
+          <div class="slide-caption">Connecting Students with Opportunity</div>
+        </div>
+        <div class="slide-item">
+          <img src="HOME_images/Image3.png" class="slide-img" alt="Slide 3">
+          <div class="slide-caption">Building Careers Across Borders</div>
         </div>
       </div>
+      <div class="slider-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
 
   
     <!-- 本文 -->
     <main>
-      <h2>ようこそ！</h2>
-      <p>こちらはサンプル株式会社の公式ホームページです。</p>
+      <!-- Hero Section -->
+<section class="hero-section">
+  <img src="HOME_images/hero_main.png" alt="グローバルな若者と日本のオフィス" class="hero-img">
+  <div class="hero-overlay">
+    <h1 class="hero-title">あなたの未来に、日本という選択を。</h1>
+    <p class="hero-sub">海外の優秀な留学生 × 日本の中小企業を、信頼ベースでつなぐB2Bキャリア支援サービス</p>
+    <div class="hero-buttons">
+      <a href="#" class="btn btn-primary">▶︎ 学生登録（無料）</a>
+      <a href="#" class="btn btn-secondary">▶︎ 企業の方はこちら</a>
+      <a href="services.html" class="btn btn-tertiary">▶︎ サービス紹介へ</a>
+    </div>
+  </div>
+</section>
+
+<!-- Challenges Section -->
+<section class="section">
+  <h2>このような課題に応えます</h2>
+  <ul class="checklist">
+    <li>✅ 採用コストが高すぎる</li>
+    <li>✅ グローバル人材と出会えない</li>
+    <li>✅ 留学生向け情報が少ない</li>
+    <li>✅ 日本就職の不安が大きい</li>
+    <li>✅ 有名大学に通う日本話者のグローバル人材を獲得したい</li>
+  </ul>
+</section>
+
+<!-- Features Section -->
+<section class="section">
+  <h2>Cariaidの強み</h2>
+  <ul class="features">
+    <li>🎓 厳選された海外大学生ネットワーク</li>
+    <li>🤝 企業との信頼マッチング</li>
+    <li>🌐 日本語・英語の多言語サポート</li>
+    <li>📊 可視化された評価システム</li>
+  </ul>
+</section>
+
+<!-- Partner Logos Section -->
+<section class="section">
+  <h2>利用企業（一部紹介）</h2>
+  <div class="partner-logos">
+    <img src="HOME_images/partner1.png" alt="Partner Logo 1">
+    <img src="HOME_images/partner2.png" alt="Partner Logo 2">
+    <img src="HOME_images/partner3.png" alt="Partner Logo 3">
+  </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="section cta-links">
+  <a href="#" class="btn btn-outline">▶︎ 成功事例を見る</a>
+  <a href="#" class="btn btn-outline">▶︎ よくある質問</a>
+  <a href="contact.html" class="btn btn-outline">▶︎ お問い合わせ</a>
+</section>
+
+<!-- 既存のスライダー部分はトップ下や別ページで利用可能 -->
+
     </main>
 
     <footer>
-      &copy; 2025 サンプル株式会社
+      <p>&copy; 2025 Cariaid</p>
     </footer>
   </body>
   <script src="script.js"></script>

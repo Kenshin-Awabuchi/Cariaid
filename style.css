@@ -27,7 +27,7 @@ header {
     color: inherit;              /* ← 元の色のまま（#330000） */
   }
   .logo-img {
-    height: 80px;
+    height: 60px;
     object-fit: contain;
   }
   
@@ -54,6 +54,9 @@ header {
     padding-bottom: 2px;
     border-bottom: 2px solid transparent;/* ← 最初は透明な線 */
     transition: border-color 0.3s ease;       /* ← 下線だけアニメーション */
+  }
+  .menu-bar a.active {
+    border-bottom-color: #2F4F4F;
   }
   
   /* ホバー時の演出 */
@@ -104,7 +107,7 @@ body {
 
   .slider-slide {
     width: 100vw;
-    height: 50vh;
+    height: 80vh;
     overflow: hidden;
     position: relative;
   }
@@ -117,7 +120,7 @@ body {
   
   .slide-img {
     width: 100vw;
-    height: 50vh;
+    height: 80vh;
     object-fit: cover;
     flex-shrink: 0;
   }
@@ -144,5 +147,406 @@ body {
   .dot.active {
     background-color: white;
     transform: scale(1.3);
+  }
+  
+  .slide-item {
+    position: relative;
+  }
+  
+  @media (max-width: 768px) {
+    .slide-caption {
+      font-size: 1rem;
+      padding: 8px 16px;
+    }
+  }
+  
+  .slide-caption {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    width: max-content;
+    max-width: 80%;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+
+  }
+  .slide-caption-top {
+    top: 10%;
+    bottom: auto;
+    position: absolute;
+    font-size: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    text-align: center;
+    width: max-content;
+    max-width: 80%;
+  }
+  
+  .slide-caption-bottom {
+    bottom: 10%;
+    position: absolute;
+    font-size: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    text-align: center;
+    width: max-content;
+    max-width: 80%;
+  }
+  
+
+
+  /*ホームスタイリング*/
+    .hero-section {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-section::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+  }
+
+
+  .hero-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .hero-overlay {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+    text-shadow: 0 0 10px rgba(0,0,0,0.7);
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .hero-sub {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+
+  .btn-primary {
+    background-color: #2b7bff;
+    color: white;
+  }
+
+  .btn-secondary {
+    background-color: #444;
+    color: white;
+  }
+
+  .btn-tertiary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .btn-outline {
+    background-color: transparent;
+    color: #778899;
+    border: 2px solid #778899;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+  }
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    box-sizing: border-box;
+  }
+
+  .section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #222;
+  }
+
+  .section ul {
+    list-style: none;
+    padding-left: 0;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #333;
+  }
+
+  .partner-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .partner-logos img {
+    max-height: 60px;
+    width: auto;
+    opacity: 0.9;
+    transition: transform 0.3s;
+  }
+
+  .partner-logos img:hover {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+
+
+
+  /*サービス紹介スタイリング*/
+  .service-block,
+  .pricing-block {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+  }
+
+  .service-block h3,
+  .pricing-block h2 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    color: #333;
+    border-left: 4px solid #778899;
+    padding-left: 10px;
+  }
+
+  .service-block ul,
+  .pricing-block ul {
+    padding-left: 20px;
+    line-height: 1.8;
+    color: #444;
+  }
+
+  .pricing-block .btn {
+    margin-top: 20px;
+  }
+
+
+  /*学生ガイド*/
+  .guide-steps {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin-top: 30px;
+  }
+  
+  .step {
+    background-color: #f0f4ff;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid #576879;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+  
+  .step h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    color: #576879;
+  }
+  
+  .faq-block {
+    margin-top: 50px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+  }
+  
+  .faq-list dt {
+    font-weight: bold;
+    margin-top: 1rem;
+    color: #576879;
+  }
+  
+  .faq-list dd {
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    color: #333;
+  }
+  
+  .checklist {
+    padding-left: 0;
+    list-style: none;
+    display: grid;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  
+  .checklist li {
+    background: #eef4ff;
+    border-left: 5px solid #576879;
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: #333;
+    font-size: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+
+  /*有料インターン*/
+  .intern-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+  
+  .intern-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #2b7bff;
+  }
+  
+  .intern-card p {
+    margin: 4px 0;
+    color: #333;
+  }
+  
+  .intern-links {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .btn-sm {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .intern-cta {
+    margin-top: 40px;
+    text-align: center;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  /*企業ロゴ*/
+  .intern-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .intern-logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  
+
+
+
+  /*about us*/
+  .about-section h3 {
+    font-size: 1.2rem;
+    margin-top: 40px;
+    color: #576879;
+    border-left: 4px solid #576879;
+    padding-left: 10px;
+  }
+  
+  .about-mission .mission-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .about-company ul {
+    list-style: none;
+    padding-left: 0;
+    line-height: 1.8;
+    margin-top: 1rem;
+  }
+  
+
+
+
+
+  /*お問い合わせ*/
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .contact-links {
+    margin-top: 40px;
+    text-align: center;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .contact-links a {
+    color: #2b7bff;
+    text-decoration: none;
+    font-weight: bold;
   }
   
