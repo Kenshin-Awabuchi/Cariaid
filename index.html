@@ -183,5 +183,16 @@ onAuthStateChanged(auth, (user) => {
 
     </script>
   </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggleButton = document.getElementById("menu-toggle");
+      const menuLinks = document.getElementById("menu-links");
+  
+      toggleButton.addEventListener("click", () => {
+        menuLinks.classList.toggle("active");
+      });
+    });
+  </script>
+  
   <script src="script.js"></script>
 </html>
