@@ -1,57 +1,173 @@
-<section class="section">
-  <h2>応募履歴</h2>
-  <div id="application-list" class="application-list">
-    <p>読み込み中...</p>
-  </div>
-</section>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-  import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyB-kZseSpbFLvXYVBy5bmsw-M2jHVorLZ8",
-    authDomain: "cariaid.firebaseapp.com",
-    projectId: "cariaid",
-    storageBucket: "cariaid.appspot.com",
-    messagingSenderId: "388903287463",
-    appId: "1:388903287463:web:60cfe73f87131e47db7982"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-
-  const applicationList = document.getElementById('application-list');
-
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      const q = query(
-        collection(db, "applications"),
-        where("userId", "==", user.uid)
-      );
-
-      const querySnapshot = await getDocs(q);
-      if (querySnapshot.empty) {
-        applicationList.innerHTML = "<p>応募履歴がありません。</p>";
-        return;
-      }
-
-      let html = "<ul>";
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        html += `
-          <li class="application-item">
-            <strong>${data.companyName}</strong><br>
-            職種：${data.jobTitle}<br>
-            応募日：${new Date(data.appliedAt).toLocaleDateString()}
-          </li>`;
-      });
-      html += "</ul>";
-      applicationList.innerHTML = html;
-
-    } else {
-      applicationList.innerHTML = "<p>ログインしてください。</p>";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Page | Cariaid</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .application-list ul {
+      list-style: none;
+      padding: 0;
     }
+
+    .application-item {
+      background: #f7f9fc;
+      border-left: 4px solid #42597a;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+    }
+
+    .section {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    #profile-info ul {
+  list-style: none;
+  padding: 0;
+  line-height: 1.8;
+}
+
+#profile-info li {
+  background: #f5f7fa;
+  border-left: 4px solid #42597a;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Page</h1>
+  </header>
+
+  <a href="index.html" class="btn btn-outline" style="margin: 20px; display: inline-block;">← ホームに戻る</a>
+
+
+  <main>
+    <section class="section">
+      <h2>プロフィール情報</h2>
+      <div id="profile-info">
+        <p>読み込み中...</p>
+      </div>
+    </section>
+    
+    <section class="section">
+      <h2>応募履歴</h2>
+      <div id="application-list" class="application-list">
+        <p>読み込み中...</p>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import {
+      getAuth,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+    import {
+      getFirestore,
+      collection,
+      query,
+      where,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+    import {
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB-kZseSpbFLvXYVBy5bmsw-M2jHVorLZ8",
+      authDomain: "cariaid.firebaseapp.com",
+      projectId: "cariaid",
+      storageBucket: "cariaid.appspot.com",
+      messagingSenderId: "388903287463",
+      appId: "1:388903287463:web:60cfe73f87131e47db7982"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const applicationList = document.getElementById('application-list');
+    const profileInfo = document.getElementById('profile-info');
+
+
+    onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    profileInfo.innerHTML = "<p>ログインしてください。</p>";
+    applicationList.innerHTML = "<p>ログインしてください。</p>";
+    return;
+  }
+
+  // 🔹 プロフィール情報取得
+  const userDocRef = doc(db, "users", user.uid);
+  const userSnap = await getDoc(userDocRef);
+
+  if (userSnap.exists()) {
+    const data = userSnap.data();
+    const languages = (data.languages || [])
+      .map(lang => `${lang.language}（${lang.level}）`).join(", ");
+
+    profileInfo.innerHTML = `
+      <ul>
+        <li><strong>氏名：</strong>${data.fullName || "未登録"}</li>
+        <li><strong>メール：</strong>${user.email}</li>
+        <li><strong>国籍：</strong>${data.nationality || "未登録"}</li>
+        <li><strong>大学：</strong>${data.university || "未登録"}</li>
+        <li><strong>学位：</strong>${data.degree || "未登録"}</li>
+        <li><strong>専攻：</strong>${data.major || "未登録"}</li>
+        <li><strong>卒業予定：</strong>${data.graduationYear || ""}年${data.graduationMonth || ""}月</li>
+        <li><strong>言語：</strong>${languages || "未登録"}</li>
+        <li><strong>志望業界：</strong>${data.preferredIndustry || "未登録"}</li>
+        <li><strong>居住地：</strong>${data.locationCountry || ""} / ${data.locationCity || ""}</li>
+        <li><strong>性別：</strong>${data.gender || "未登録"}</li>
+      </ul>
+    `;
+  } else {
+    profileInfo.innerHTML = "<p>プロフィール情報が見つかりません。</p>";
+  }
+
+  // 🔹 応募履歴取得
+  const q = query(collection(db, "applications"), where("uid", "==", user.uid));
+  const querySnapshot = await getDocs(q);
+
+  if (querySnapshot.empty) {
+    applicationList.innerHTML = "<p>応募履歴がありません。</p>";
+    return;
+  }
+
+  let html = "<ul>";
+  querySnapshot.forEach((doc) => {
+    const data = doc.data();
+    html += `
+      <li class="application-item">
+        <strong>${data.company}</strong><br>
+        職種：${data.jobTitle}<br>
+        応募日：${data.timestamp ? new Date(data.timestamp.toDate()).toLocaleDateString() : "不明"}
+      </li>`;
   });
-</script>
+  html += "</ul>";
+  applicationList.innerHTML = html;
+});
+
+
+  </script>
+</body>
+</html>

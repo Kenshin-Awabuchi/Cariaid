@@ -155,6 +155,24 @@
         await signOut(auth);
         location.reload(); // 状態を更新
       };
+
+
+
+      const authButtonContainer = document.getElementById("auth-button-container");
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    authButtonContainer.innerHTML = `
+      <a href="mypage.html" class="btn btn-outline">マイページ</a>
+      <button onclick="logout()" class="btn btn-outline">ログアウト</button>
+    `;
+  } else {
+    authButtonContainer.innerHTML = `
+      <a href="loguin_en.html" class="btn btn-outline">ログイン</a>
+    `;
+  }
+});
+
     </script>
   </body>
   <script src="script.js"></script>
