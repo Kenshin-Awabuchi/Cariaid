@@ -94,3 +94,14 @@ dots.forEach((dot, index) => {
     location.reload(); // 状態を更新
   };
 */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("menu-toggle");
+  const links = document.getElementById("menu-links");
+
+  if (toggle && links) {
+    toggle.addEventListener("click", () => {
+      links.classList.toggle("active");
+    });
+  }
+});

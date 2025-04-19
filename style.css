@@ -1530,3 +1530,47 @@ a {
     margin: 8px auto;
   }
 }
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  font-size: 2rem;
+  border: none;
+  color: #42597a;
+  cursor: pointer;
+}
+
+/* スマホ用メニュー */
+@media screen and (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .menu-bar {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 20px;
+  }
+
+  .menu-bar.active {
+    display: flex;
+  }
+
+  .menu-bar a {
+    padding: 10px 0;
+    font-size: 1rem;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .auth-button-right {
+    margin-top: 10px;
+  }
+}
