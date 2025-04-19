@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>お問い合わせ | cariaid</title>
-  <link rel="stylesheet" href="style.css">
+  <title>お問い合わせ | Cariaid</title>
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
   <header>
     <h1 class="logo">
       <a href="index.html">
@@ -17,51 +16,49 @@
     </h1>
     <nav class="menu-bar">
       <a href="services.html">サービス紹介</a>
-      <a href="guide.html">学生ガイド</a>
-      <a href="internships.html">有料インターン</a>
-      <a href="about.html">会社概要</a>
-      <a href="contact.html"class="active">お問い合わせ</a>
+      <a href="guide.html">学生向け</a>
+      <a href="employers.html">企業向け</a>
+      <a href="internships.html">求人一覧</a>
+      <a href="about.html">私たちについて</a>
+      <a href="contact.html" class="active">お問い合わせ</a>
     </nav>
   </header>
 
-  <main>
-    <h2>お問い合わせ</h2>
-    <p>
-      <main class="section">
-        <h2>お問い合わせ</h2>
-        <form action="mailto:your@email.com" method="post" enctype="text/plain" class="contact-form">
-          <label for="name">お名前：</label>
-          <input type="text" id="name" name="name" required>
-      
-          <label for="email">メールアドレス：</label>
-          <input type="email" id="email" name="email" required>
-      
-          <label for="role">所属：</label>
-          <select id="role" name="role" required>
-            <option value="">選択してください</option>
-            <option value="学生">学生</option>
-            <option value="企業">企業</option>
-            <option value="その他">その他</option>
-          </select>
-      
-          <label for="message">お問い合わせ内容：</label>
-          <textarea id="message" name="message" rows="5" required></textarea>
-      
-          <button type="submit" class="btn btn-primary">送信する</button>
-        </form>
-      
-        <div class="contact-links">
-          <a href="guide.html">▶︎ よくある質問を見る</a>
-          <a href="#">▶︎ 利用規約・プライバシーポリシー</a>
-        </div>
-      </main>
-      
-    </p>
+  <main class="wide-section">
+    <h1 class="page-title">お問い合わせ</h1>
+
+    <form class="contact-form" action="#" method="post">
+      <label for="name">お名前</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="phone">電話番号</label>
+      <input type="tel" id="phone" name="phone" />
+
+      <label for="email">メールアドレス</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="type">所属</label>
+      <select id="type" name="type" required>
+        <option value="" disabled selected>選択してください</option>
+        <option value="学生">学生</option>
+        <option value="企業">企業</option>
+        <option value="その他">その他</option>
+      </select>
+
+      <label for="message">お問い合わせ内容</label>
+      <textarea id="message" name="message" rows="6" required></textarea>
+
+      <button type="submit" class="btn btn-primary">送信する</button>
+    </form>
   </main>
 
   <footer>
     <p>&copy; 2025 Cariaid</p>
+    <div class="footer-links">
+      <a href="terms.html">利用規約</a>｜
+      <a href="privacy.html">プライバシーポリシー</a>｜
+      <a href="law.html">特定商取引法に基づく表記</a>
+    </div>
   </footer>
-
 </body>
 </html>

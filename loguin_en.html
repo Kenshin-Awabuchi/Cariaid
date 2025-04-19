@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Cariaid</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .auth-section {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 40px;
+      background: #f9f9f9;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    .auth-section h2 {
+      margin-bottom: 24px;
+      color: #42597a;
+    }
+
+    .auth-section input {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .auth-section button {
+      background-color: #42597a;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .auth-section button:hover {
+      background-color: #42597a;
+      transform: translateY(-2px);
+    }
+
+    .auth-section .message {
+      margin-top: 12px;
+      font-size: 0.9em;
+      color: #e63946;
+    }
+
+    .auth-section p {
+      margin-top: 20px;
+    }
+
+    .auth-section a {
+      color: #2d6398;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="auth-section">
+    <h2>Login to Your Account</h2>
+
+    <input type="email" id="loginEmail" placeholder="Email address" required />
+    <input type="password" id="loginPassword" placeholder="Password" required />
+
+    <button onclick="login()">Login</button>
+    <div id="loginMessage" class="message"></div>
+
+    <p>Don't have an account yet? <a href="register_en.html">Register here</a></p>
+  </section>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB-kZseSpbFLvXYVBy5bmsw-M2jHVorLZ8",
+      authDomain: "cariaid.firebaseapp.com",
+      projectId: "cariaid",
+      storageBucket: "cariaid.appspot.com",
+      messagingSenderId: "388903287463",
+      appId: "1:388903287463:web:60cfe73f87131e47db7982"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.login = async function () {
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+      const message = document.getElementById("loginMessage");
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        message.textContent = "Login successful! 🎉";
+        setTimeout(() => {
+          location.href = "index.html";
+            }, 500);
+      } catch (error) {
+        message.textContent = "Login failed: " + error.message;
+      }
+    };
+  </script>
+
+</body>
+</html>

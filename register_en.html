@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Multi-Step Registration | Cariaid</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #f7f9fc;
+      padding: 40px 20px;
+      color: #333;
+      text-align: center;
+    }
+
+    .form-box {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    .step {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    .language-entry {
+      margin-bottom: 16px;
+    }
+
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      margin: 12px 5px;
+      padding: 12px 24px;
+      background-color: #42597a;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .btn-back:hover {
+  background-color: #999;   /* 濃いグレーに変化 */
+  transform: translateY(-2px);    /* 少し浮く */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);  /* 軽い影 */
+}
+
+button:hover {
+  background-color: #4e6275;         /* 濃いグレーに変化 */
+  transform: translateY(-2px);    /* 少し浮く */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);  /* 軽い影 */
+}
+    .btn-back { 
+      background-color: #ccc;
+      color: #333;
+    }
+
+    .message {
+      margin-top: 16px;
+      color: #576879;
+      font-size: 0.9rem;
+    }
+
+    .step label {
+  display: block;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.step select,
+.step input[type="text"],
+.step input[type="email"],
+.step input[type="password"] {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.btn-back {
+  background-color: #ccc;
+  color: #333;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  display: inline-block;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-back:hover {
+  background-color: #999;
+  transform: translateY(-2px);
+}
+
+
+select {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="form-box">
+    <h2>Registration</h2>
+
+    <!-- Step 1 -->
+    <div class="step active">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <input type="text" id="fullName" placeholder="Full Name (English)" required />
+      <input type="text" id="nationality" placeholder="Nationality" required />
+      <label for="gender">Gender</label>
+      <select id="gender" name="gender" required>
+        <option value="" disabled selected>Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="non-binary">Non-binary</option>
+        <option value="prefer-not">Prefer not to say</option>
+        <option value="other">Other</option>
+      </select>
+      <button onclick="nextStep()">Next</button>
+      <p style="margin-top: 30px; text-align: center;">
+        <a href="index.html" class="btn btn-back">← Back to Home</a>
+      </p>
+    </div>
+
+<!-- Step 2 -->
+<div class="step">
+  <input type="text" id="university" placeholder="University (English)" required />
+
+  <label for="degree">Degree</label>
+  <select id="degree" required>
+    <option value="" disabled selected hidden>Select your degree</option>
+    <option value="Bachelor">Bachelor</option>
+    <option value="Master">Master</option>
+    <option value="PhD">PhD</option>
+    <option value="Other">Other</option>
+  </select>
+
+  <label for="major">Major / Field</label>
+  <input type="text" id="major" placeholder="e.g. Business, Engineering" required />
+
+  <label>Expected Graduation Date</label>
+  <div style="display: flex; gap: 10px;">
+    <select id="graduationYear" required>
+      <option value="" disabled selected hidden>Select Year</option>
+      <option value="2024">2024</option>
+      <option value="2025">2025</option>
+      <option value="2026">2026</option>
+      <option value="2027">2027</option>
+      <option value="2028">2028</option>
+    </select>
+    <select id="graduationMonth" required>
+      <option value="" disabled selected hidden>Select Month</option>
+      <option value="01">January</option>
+      <option value="02">February</option>
+      <option value="03">March</option>
+      <option value="04">April</option>
+      <option value="05">May</option>
+      <option value="06">June</option>
+      <option value="07">July</option>
+      <option value="08">August</option>
+      <option value="09">September</option>
+      <option value="10">October</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
+    </select>
+  </div>
+
+  <button class="btn-back" onclick="prevStep()">Back</button>
+  <button onclick="nextStep()">Next</button>
+</div>
+
+
+     <!-- Step 3 -->
+<div class="step">
+  <div id="language-container">
+    <div class="language-entry">
+      <label>Language</label>
+      <select class="language-select" onchange="handleLanguageChange(this)" required>
+        <option value="" disabled selected hidden>Select language</option>
+        <option value="Japanese">Japanese</option>
+        <option value="English">English</option>
+        <option value="Chinese">Chinese</option>
+        <option value="Other">Other</option>
+      </select>
+      <input type="text" class="language-other" placeholder="Enter language (free input)" style="display: none;" />
+
+      <label>Level</label>
+      <select class="language-level" required>
+        <option value="" disabled selected hidden>Select level</option>
+        <option value="Native">Native</option>
+        <option value="Business">Business</option>
+        <option value="Conversational">Conversational</option>
+      </select>
+    </div>
+  </div>
+
+  <button type="button" onclick="addLanguageField()">＋ Add another language</button>
+
+  <label for="industry">Preferred Industry / Role</label>
+  <input type="text" id="industry" placeholder="e.g. IT, Consulting, Marketing" required />
+
+  <label for="country">Country</label>
+  <select id="country" required>
+    <option value="" disabled selected hidden>Select country</option>
+    <option value="Japan">Japan</option>
+    <option value="Malaysia">Malaysia</option>
+    <option value="Australia">Australia</option>
+    <option value="China">China</option>
+    <option value="Other">Other</option>
+  </select>
+
+  <input type="text" id="city" placeholder="City (free input)" required />
+
+  <button class="btn-back" onclick="prevStep()">Back</button>
+  <button onclick="register()">Register</button>
+  <div class="message" id="message"></div>
+  
+  
+</div>
+
+
+
+
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+  import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyB-kZseSpbFLvXYVBy5bmsw-M2jHVorLZ8",
+    authDomain: "cariaid.firebaseapp.com",
+    projectId: "cariaid",
+    storageBucket: "cariaid.appspot.com",
+    messagingSenderId: "388903287463",
+    appId: "1:388903287463:web:60cfe73f87131e47db7982"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // ステップ制御
+  let currentStep = 0;
+  const steps = document.querySelectorAll(".step");
+
+  function showStep(index) {
+    steps.forEach((step, i) => {
+      step.classList.toggle("active", i === index);
+    });
+  }
+
+  window.nextStep = function () {
+    if (currentStep < steps.length - 1) {
+      currentStep++;
+      showStep(currentStep);
+    }
+  };
+
+  window.prevStep = function () {
+    if (currentStep > 0) {
+      currentStep--;
+      showStep(currentStep);
+    }
+  };
+
+
+  
+
+  // 言語選択：その他を自由記述に切り替え
+  window.handleLanguageChange = function(select) {
+    const otherInput = select.parentElement.querySelector('.language-other');
+    if (select.value === "Other") {
+      otherInput.style.display = "inline-block";
+    } else {
+      otherInput.style.display = "none";
+    }
+  };
+
+  // 言語フィールド追加
+  window.addLanguageField = function () {
+    const container = document.getElementById("language-container");
+    const entry = document.createElement("div");
+    entry.classList.add("language-entry");
+
+    entry.innerHTML = `
+      <label>Language</label>
+      <select class="language-select" onchange="handleLanguageChange(this)">
+        <option value="">Select Language</option>
+        <option value="Japanese">Japanese</option>
+        <option value="English">English</option>
+        <option value="Chinese">Chinese</option>
+        <option value="Other">Other</option>
+      </select>
+      <input type="text" class="language-other" placeholder="Enter language" style="display: none;" />
+
+      <label>Level</label>
+      <select class="language-level">
+        <option value="">Select Level</option>
+        <option value="Native">Native</option>
+        <option value="Business">Business</option>
+        <option value="Conversational">Conversational</option>
+      </select>
+    `;
+    container.appendChild(entry);
+  };
+
+  // 登録処理
+  window.register = async function () {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const fullName = document.getElementById("fullName").value;
+    const nationality = document.getElementById("nationality").value;
+    const gender = document.getElementById("gender").value;
+    const university = document.getElementById("university").value;
+    const degree = document.getElementById("degree").value;
+    const major = document.getElementById("major").value;
+    const graduation = `${document.getElementById("graduationYear").value}-${document.getElementById("graduationMonth").value}`;
+    const industry = document.getElementById("industry").value;
+    const country = document.getElementById("country").value;
+    const city = document.getElementById("city").value;
+    const message = document.getElementById("message");
+
+    // 言語データを配列で取得
+    const language = [];
+    const langEntries = document.querySelectorAll(".language-entry");
+    langEntries.forEach(entry => {
+      let lang = entry.querySelector(".language-select").value;
+      const otherInput = entry.querySelector(".language-other");
+      if (lang === "Other") {
+        lang = otherInput.value.trim();
+      }
+      const level = entry.querySelector(".language-level").value;
+      if (lang && level) {
+        language.push({ lang, level });
+      }
+    });
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      await setDoc(doc(db, "users", user.uid), {
+        email,
+        fullName,
+        nationality,
+        gender,
+        university,
+        degree,
+        major,
+        graduation,
+        language,
+        industry,
+        location: `${country}, ${city}`,
+        createdAt: new Date().toISOString()
+      });
+
+      message.textContent = "Registration successful! 🎉";
+      setTimeout(() => {
+      window.location.href = "index.html"; // 必要なら別ページに変更OK
+      }, 3000);
+    } catch (error) {
+      message.textContent = "Error: " + error.message;
+    }
+    
+  };
+</script>
+</body>
+</html>

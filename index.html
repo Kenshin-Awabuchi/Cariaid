@@ -17,10 +17,12 @@
       </h1>
       <nav class="menu-bar">
         <a href="services.html">サービス紹介</a>
-        <a href="guide.html">学生ガイド</a>
-        <a href="internships.html">有料インターン</a>
-        <a href="about.html">会社概要</a>
+        <a href="guide.html">学生向け</a>
+        <a href="employers.html">企業向け</a>
+        <a href="internships.html">求人一覧</a>
+        <a href="about.html">私たちについて</a>
         <a href="contact.html">お問い合わせ</a>
+        <div id="auth-button-container" class="auth-button-right"></div>
       </nav>
     </header>
 
@@ -50,6 +52,7 @@
   
     <!-- 本文 -->
     <main>
+      <div id="user-status"></div>
       <!-- Hero Section -->
 <section class="hero-section">
   <img src="HOME_images/hero_main.png" alt="グローバルな若者と日本のオフィス" class="hero-img">
@@ -57,7 +60,7 @@
     <h1 class="hero-title">あなたの未来に、日本という選択を。</h1>
     <p class="hero-sub">海外の優秀な留学生 × 日本の中小企業を、信頼ベースでつなぐB2Bキャリア支援サービス</p>
     <div class="hero-buttons">
-      <a href="#" class="btn btn-primary">▶︎ 学生登録（無料）</a>
+      <a href="loguin_en.html" class="btn btn-primary">▶︎ 学生登録（無料）</a>
       <a href="#" class="btn btn-secondary">▶︎ 企業の方はこちら</a>
       <a href="services.html" class="btn btn-tertiary">▶︎ サービス紹介へ</a>
     </div>
@@ -68,11 +71,11 @@
 <section class="section">
   <h2>このような課題に応えます</h2>
   <ul class="checklist">
-    <li>✅ 採用コストが高すぎる</li>
-    <li>✅ グローバル人材と出会えない</li>
-    <li>✅ 留学生向け情報が少ない</li>
-    <li>✅ 日本就職の不安が大きい</li>
-    <li>✅ 有名大学に通う日本話者のグローバル人材を獲得したい</li>
+    <li> 採用コストが高すぎる</li>
+    <li> グローバル人材と出会えない</li>
+    <li> 留学生向け情報が少ない</li>
+    <li> 日本就職の不安が大きい</li>
+    <li> 有名大学に通う日本話者のグローバル人材を獲得したい</li>
   </ul>
 </section>
 
@@ -110,7 +113,49 @@
 
     <footer>
       <p>&copy; 2025 Cariaid</p>
+      <div class="footer-links">
+        <a href="terms.html">利用規約</a>｜
+        <a href="privacy.html">プライバシーポリシー</a>｜
+        <a href="law.html">特定商取引法に基づく表記</a>
+      </div>
     </footer>
+    
+
+  
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+      import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+    
+      const firebaseConfig = {
+        apiKey: "AIzaSyB-kZseSpbFLvXYVBy5bmsw-M2jHVorLZ8",
+        authDomain: "cariaid.firebaseapp.com",
+        projectId: "cariaid",
+        storageBucket: "cariaid.appspot.com",
+        messagingSenderId: "388903287463",
+        appId: "1:388903287463:web:60cfe73f87131e47db7982"
+      };
+    
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+    
+      const container = document.getElementById("auth-button-container");
+    
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // ログイン中 → ログアウトボタンを表示
+          container.innerHTML = `<button onclick="logout()">Logout</button>`;
+        } else {
+          // 未ログイン → ログインページへ誘導
+          container.innerHTML = `<a href="loguin_en.html">Login</a>`;
+        }
+      });
+    
+      // ログアウト処理
+      window.logout = async function () {
+        await signOut(auth);
+        location.reload(); // 状態を更新
+      };
+    </script>
   </body>
   <script src="script.js"></script>
 </html>

@@ -1,0 +1,57 @@
+<section class="section">
+  <h2>応募履歴</h2>
+  <div id="application-list" class="application-list">
+    <p>読み込み中...</p>
+  </div>
+</section>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+  import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyB-kZseSpbFLvXYVBy5bmsw-M2jHVorLZ8",
+    authDomain: "cariaid.firebaseapp.com",
+    projectId: "cariaid",
+    storageBucket: "cariaid.appspot.com",
+    messagingSenderId: "388903287463",
+    appId: "1:388903287463:web:60cfe73f87131e47db7982"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  const applicationList = document.getElementById('application-list');
+
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      const q = query(
+        collection(db, "applications"),
+        where("userId", "==", user.uid)
+      );
+
+      const querySnapshot = await getDocs(q);
+      if (querySnapshot.empty) {
+        applicationList.innerHTML = "<p>応募履歴がありません。</p>";
+        return;
+      }
+
+      let html = "<ul>";
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        html += `
+          <li class="application-item">
+            <strong>${data.companyName}</strong><br>
+            職種：${data.jobTitle}<br>
+            応募日：${new Date(data.appliedAt).toLocaleDateString()}
+          </li>`;
+      });
+      html += "</ul>";
+      applicationList.innerHTML = html;
+
+    } else {
+      applicationList.innerHTML = "<p>ログインしてください。</p>";
+    }
+  });
+</script>

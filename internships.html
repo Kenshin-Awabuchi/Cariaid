@@ -16,48 +16,308 @@
       </h1>
       <nav class="menu-bar">
         <a href="services.html">サービス紹介</a>
-        <a href="guide.html">学生ガイド</a>
-        <a href="internships.html"class="active">有料インターン</a>
-        <a href="about.html">会社概要</a>
+        <a href="guide.html">学生向け</a>
+        <a href="employers.html">企業向け</a>
+        <a href="internships.html"class="active">求人一覧</a>
+        <a href="about.html">私たちについて</a>
         <a href="contact.html">お問い合わせ</a>
       </nav>
     </header>
-  <main>
-    <h1>有料インターン</h1>
-    <p>  <section class="section">
-      <h2>注目の有給インターン</h2>
-  
+    <main>
+      <h1 class="page-title">求人一覧｜Job Listings</h1>
+    
+      <!-- インターン① -->
       <div class="intern-card">
-        <h3>📍 〇〇株式会社</h3>
-        <img src="HOME_images/ここに追加１.png" alt="〇〇株式会社ロゴ" class="intern-logo">
+        <p>📍 <strong>企業名：</strong>ABC株式会社</p>
         <p><strong>職種：</strong>マーケティングアシスタント</p>
         <p><strong>場所：</strong>東京（在宅可）｜<strong>報酬：</strong>月5万円</p>
         <p><strong>言語：</strong>日本語（日常会話）・英語</p>
-        <div class="intern-links">
-          <a href="#" class="btn btn-sm btn-outline">▶︎ 詳細を見る</a>
-          <a href="#" class="btn btn-sm btn-primary">▶︎ 応募する</a>
+        <button class="btn btn-detail open-modal" data-target="modal1">▶︎ 詳細を見る</button>
+        <button class="btn btn-apply apply-button" data-company="ABC株式会社">▶︎ 応募する</button>
+      </div>
+    
+      <!-- モーダル① -->
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>〇〇株式会社 - 詳細情報</h2>
+          <p><strong>事業内容：</strong>中小企業向けのSNSマーケティング支援</p>
+          <p><strong>インターン内容：</strong>Instagram運用補助、分析レポート作成</p>
+          <p><strong>勤務期間：</strong>3ヶ月（応相談）</p>
+          <p><strong>スキル：</strong>Canva・Excel・日本語N2以上</p>
+          <p><strong>企業メッセージ：</strong>グローバルな視点を歓迎します！</p>
         </div>
       </div>
-  
+    
+      <!-- インターン② -->
       <div class="intern-card">
-        <h3>📍 △△Tech</h3>
-        <img src="HOME_images/ここに追加２.png" alt="△△Techロゴ" class="intern-logo">
+        <p>📍 <strong>企業名：</strong>△△Tech</p>
         <p><strong>職種：</strong>データ分析サポート</p>
         <p><strong>場所：</strong>大阪｜<strong>報酬：</strong>時給1500円</p>
-        <div class="intern-links">
-          <a href="#" class="btn btn-sm btn-outline">▶︎ 詳細を見る</a>
-          <a href="#" class="btn btn-sm btn-primary">▶︎ 応募する</a>
+        <button class="btn btn-detail open-modal" data-target="modal2">▶︎ 詳細を見る</button>
+        <button class="btn btn-apply apply-button" data-company="△△Tech">▶︎ 応募する</button>
+      </div>
+    
+      <!-- モーダル② -->
+      <div id="modal2" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>△△Tech - 詳細情報</h2>
+          <p><strong>事業内容：</strong>AIと統計を活用したSaaS型分析ツール開発</p>
+          <p><strong>インターン内容：</strong>ダッシュボード作成補助、社内データ整備</p>
+          <p><strong>勤務期間：</strong>6ヶ月（応相談）</p>
+          <p><strong>スキル：</strong>Python、Excel、Power BI</p>
+          <p><strong>企業メッセージ：</strong>分析スキルを現場で活かせます！</p>
         </div>
       </div>
-  
-      <div class="intern-cta">
-        <a href="#" class="btn btn-outline">▶︎ すべてのインターンを見る</a>
-        <a href="#" class="btn btn-outline">▶︎ 登録して応募する</a>
+    
+      <!-- CTA -->
+      <div class="cta-links">
+        <a href="#">▶︎ すべてのインターンを見る</a>
       </div>
-    </section></p>
-  </main>
+    </main>
   <footer>
     <p>&copy; 2025 Cariaid</p>
   </footer>
+<!---
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+      import { getAuth } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+      import { getFirestore, collection, addDoc, serverTimestamp, getDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+    
+      const firebaseConfig = {
+        apiKey: "AIzaSyB-kZseSpbFLvXYVBy5bmsw-M2jHVorLZ8",
+        authDomain: "cariaid.firebaseapp.com",
+        projectId: "cariaid",
+        storageBucket: "cariaid.appspot.com",
+        messagingSenderId: "388903287463",
+        appId: "1:388903287463:web:60cfe73f87131e47db7982"
+      };
+    
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+    
+      document.addEventListener("DOMContentLoaded", () => {
+        async function handleApplication(companyName) {
+  const user = auth.currentUser;
+  if (!user) {
+    alert("この操作にはログインが必要です。ログインページに移動します。");
+    window.location.href = "loguin_en.html";
+    return;
+  }
+
+  try {
+    const userDocRef = doc(db, "users", user.uid);
+    const userSnapshot = await getDoc(userDocRef);
+
+    if (!userSnapshot.exists()) {
+      alert("ユーザープロフィールが見つかりません。");
+      return;
+    }
+
+    const userData = userSnapshot.data();
+
+    await addDoc(collection(db, "applications"), {
+      uid: user.uid,
+      fullName: userData.fullName || "",
+      email: user.email,
+      gender: userData.gender || "unspecified",
+      company: companyName,
+      timestamp: serverTimestamp()
+    });
+
+    alert(`「${companyName}」への応募が完了しました！`);
+  } catch (error) {
+    console.error("応募保存エラー:", error);
+    alert("応募中にエラーが発生しました。");
+  }
+}
+document.querySelectorAll(".apply-button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const company = btn.getAttribute("data-company");
+    handleApplication(company);  // ← submitApplication から変更
+  });
+});
+
+
+
+      });
+
+      import {
+        getFirestore, collection, query, where, getDocs
+        } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    const q = query(
+      collection(db, "applications"),
+      where("uid", "==", user.uid)
+    );
+    const snapshot = await getDocs(q);
+
+    const appliedCompanies = [];
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      if (data.company) {
+        appliedCompanies.push(data.company);
+      }
+    });
+
+    // 全ボタンをチェックして無効化
+    document.querySelectorAll(".apply-button").forEach(btn => {
+      const company = btn.getAttribute("data-company");
+      if (appliedCompanies.includes(company)) {
+        btn.disabled = true;
+        btn.textContent = "✅ 応募済み";
+        btn.classList.add("applied");
+      }
+    });
+  }
+});
+
+    </script>-->
+    <script type="module">
+      import {
+        initializeApp
+      } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+      import {
+        getAuth,
+        onAuthStateChanged
+      } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        serverTimestamp,
+        getDoc,
+        doc,
+        query,
+        where,
+        getDocs
+      } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+    
+      const firebaseConfig = {
+        apiKey: "AIzaSyB-kZseSpbFLvXYVBy5bmsw-M2jHVorLZ8",
+        authDomain: "cariaid.firebaseapp.com",
+        projectId: "cariaid",
+        storageBucket: "cariaid.appspot.com",
+        messagingSenderId: "388903287463",
+        appId: "1:388903287463:web:60cfe73f87131e47db7982"
+      };
+    
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+    
+      // 応募処理
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".apply-button").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const company = btn.getAttribute("data-company");
+            handleApplication(company);
+          });
+        });
+      });
+    
+      async function handleApplication(companyName) {
+        const user = auth.currentUser;
+        if (!user) {
+          alert("この操作にはログインが必要です。ログインページに移動します。");
+          window.location.href = "loguin_en.html";
+          return;
+        }
+    
+        try {
+          const userDocRef = doc(db, "users", user.uid);
+          const userSnapshot = await getDoc(userDocRef);
+    
+          if (!userSnapshot.exists()) {
+            alert("ユーザープロフィールが見つかりません。");
+            return;
+          }
+    
+          const userData = userSnapshot.data();
+    
+          await addDoc(collection(db, "applications"), {
+            uid: user.uid,
+            fullName: userData.fullName || "",
+            email: user.email,
+            gender: userData.gender || "unspecified",
+            company: companyName,
+            timestamp: serverTimestamp()
+          });
+    
+          alert(`「${companyName}」への応募が完了しました！`);
+          location.reload(); // 応募後に状態更新するならここでリロード
+    
+        } catch (error) {
+          console.error("応募保存エラー:", error);
+          alert("応募中にエラーが発生しました。");
+        }
+      }
+    
+      // 応募済みチェック（無効化処理）
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          const q = query(
+            collection(db, "applications"),
+            where("uid", "==", user.uid)
+          );
+          const snapshot = await getDocs(q);
+    
+          const appliedCompanies = [];
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            if (data.company) {
+              appliedCompanies.push(data.company);
+            }
+          });
+    
+          document.querySelectorAll(".apply-button").forEach(btn => {
+            const company = btn.getAttribute("data-company");
+            if (appliedCompanies.includes(company)) {
+              btn.disabled = true;
+              btn.textContent = "✅ 応募済み";
+              btn.classList.add("applied");
+            }
+          });
+        }
+      });
+    </script>
+    
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // モーダルを開く
+        document.querySelectorAll(".open-modal").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const targetId = btn.getAttribute("data-target");
+            const modal = document.getElementById(targetId);
+            if (modal) modal.style.display = "block";
+          });
+        });
+    
+        // モーダルを閉じる
+        document.querySelectorAll(".modal .close").forEach(closeBtn => {
+          closeBtn.addEventListener("click", () => {
+            const modal = closeBtn.closest(".modal");
+            if (modal) modal.style.display = "none";
+          });
+        });
+    
+        // モーダル外をクリックして閉じる
+        window.addEventListener("click", (e) => {
+          document.querySelectorAll(".modal").forEach(modal => {
+            if (e.target === modal) modal.style.display = "none";
+          });
+        });
+      });
+    </script>
+    
+    
+  
+  <script src="internships_script.js"></script>
 </body>
 </html>
