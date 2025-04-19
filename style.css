@@ -1574,3 +1574,48 @@ a {
     margin-top: 10px;
   }
 }
+/* 共通ナビゲーション初期状態（PC） */
+.menu-bar {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* モバイルでは非表示にして、ハンバーガークリックで表示 */
+@media screen and (max-width: 768px) {
+  .menu-bar {
+    display: none;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 80px; /* ヘッダーの下に表示 */
+    right: 20px;
+    left: 20px;
+    z-index: 1000;
+    padding: 10px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 8px;
+  }
+
+  .menu-bar.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+  }
+
+  .auth-button-right {
+    margin-top: 10px;
+  }
+}
+
+/* PCではハンバーガー非表示 */
+.menu-toggle {
+  display: none;
+}
