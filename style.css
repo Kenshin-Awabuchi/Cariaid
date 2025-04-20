@@ -1362,7 +1362,7 @@ header {
   border-bottom: 4px solid #778899;
   padding: 15px 20px;
 }
-
+/*
 .header-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -1370,14 +1370,15 @@ header {
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
+  justify-content: flex-start; /* ← 左寄せに変更 */
+
+*/
 
 /* ロゴ */
 .logo {
   margin: 0;
   font-size: 1.5em;
+  margin-right: auto;
 }
 
 .logo a {
@@ -1421,6 +1422,10 @@ header {
 .menu-bar a:hover {
   border-bottom-color: #2F4F4F;
 }
+.menu-bar.active {
+  display: flex !important;
+}
+
 
 /* 認証系ボタン（ログイン・マイページ・ログアウト） */
 .auth-button-right {
@@ -1441,11 +1446,12 @@ header {
     flex-direction: column;
     align-items: flex-start;
   }
-
+/*
   .header-container {
     flex-direction: column;
     align-items: center;
   }
+    */
 
   .menu-toggle {
     display: block;
