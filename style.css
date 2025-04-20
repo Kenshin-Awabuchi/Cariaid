@@ -1619,3 +1619,54 @@ a {
 .menu-toggle {
   display: none;
 }
+
+
+/* PCでは常時横並び表示 */
+.menu-bar {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* スマホ表示用スタイル */
+@media screen and (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    margin-left: auto;
+  }
+
+  .menu-bar {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    z-index: 999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .menu-bar.active {
+    display: flex;
+  }
+
+  .menu-bar a {
+    padding: 10px 0;
+    font-size: 1rem;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+/* デフォルトでハンバーガーを非表示に */
+.menu-toggle {
+  display: none;
+}
