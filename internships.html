@@ -14,7 +14,9 @@
           <img src="HOME_images/logo-transparent.png" alt="Cariaid ロゴ" class="logo-img">
         </a>
       </h1>
-      <nav class="menu-bar">
+      <button id="menu-toggle" class="menu-toggle" aria-label="メニューを開く">≡</button>
+    
+      <nav id="menu-bar" class="menu-bar"> 
         <a href="services.html">サービス紹介</a>
         <a href="guide.html">学生向け</a>
         <a href="employers.html">企業向け</a>
@@ -79,105 +81,7 @@
   <footer>
     <p>&copy; 2025 Cariaid</p>
   </footer>
-<!---
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-      import { getAuth } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-      import { getFirestore, collection, addDoc, serverTimestamp, getDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
-    
-      const firebaseConfig = {
-        apiKey: "AIzaSyB-kZseSpbFLvXYVBy5bmsw-M2jHVorLZ8",
-        authDomain: "cariaid.firebaseapp.com",
-        projectId: "cariaid",
-        storageBucket: "cariaid.appspot.com",
-        messagingSenderId: "388903287463",
-        appId: "1:388903287463:web:60cfe73f87131e47db7982"
-      };
-    
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-      const db = getFirestore(app);
-    
-      document.addEventListener("DOMContentLoaded", () => {
-        async function handleApplication(companyName) {
-  const user = auth.currentUser;
-  if (!user) {
-    alert("この操作にはログインが必要です。ログインページに移動します。");
-    window.location.href = "loguin_en.html";
-    return;
-  }
 
-  try {
-    const userDocRef = doc(db, "users", user.uid);
-    const userSnapshot = await getDoc(userDocRef);
-
-    if (!userSnapshot.exists()) {
-      alert("ユーザープロフィールが見つかりません。");
-      return;
-    }
-
-    const userData = userSnapshot.data();
-
-    await addDoc(collection(db, "applications"), {
-      uid: user.uid,
-      fullName: userData.fullName || "",
-      email: user.email,
-      gender: userData.gender || "unspecified",
-      company: companyName,
-      timestamp: serverTimestamp()
-    });
-
-    alert(`「${companyName}」への応募が完了しました！`);
-  } catch (error) {
-    console.error("応募保存エラー:", error);
-    alert("応募中にエラーが発生しました。");
-  }
-}
-document.querySelectorAll(".apply-button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const company = btn.getAttribute("data-company");
-    handleApplication(company);  // ← submitApplication から変更
-  });
-});
-
-
-
-      });
-
-      import {
-        getFirestore, collection, query, where, getDocs
-        } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
-      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-
-onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    const q = query(
-      collection(db, "applications"),
-      where("uid", "==", user.uid)
-    );
-    const snapshot = await getDocs(q);
-
-    const appliedCompanies = [];
-    snapshot.forEach((doc) => {
-      const data = doc.data();
-      if (data.company) {
-        appliedCompanies.push(data.company);
-      }
-    });
-
-    // 全ボタンをチェックして無効化
-    document.querySelectorAll(".apply-button").forEach(btn => {
-      const company = btn.getAttribute("data-company");
-      if (appliedCompanies.includes(company)) {
-        btn.disabled = true;
-        btn.textContent = "✅ 応募済み";
-        btn.classList.add("applied");
-      }
-    });
-  }
-});
-
-    </script>-->
     <script type="module">
       import {
         initializeApp

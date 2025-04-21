@@ -1449,14 +1449,16 @@ header {
   header {
     flex-direction: row;
     align-items: center;
+    justify-content: space-between; /* ← 追加してロゴとボタンを両端に配置 */
   }
 
   .logo {
-    flex: 1;
+    flex: initial; /* ← これで中央寄せになる flex:1 をリセット */
   }
 
   .menu-toggle {
     display: block;
+    margin-left: 0; /* ← 右端に寄せたい場合は auto にしない */
   }
 
   .menu-bar {
