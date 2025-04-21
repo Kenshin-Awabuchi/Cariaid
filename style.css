@@ -1347,38 +1347,24 @@ a {
 }
 
 
-
-
-/* ==============================
-   ヘッダー全体（共通・PC向け）
-============================== */
+/* ===============================
+   ヘッダー共通レイアウト（PC＆スマホ共通）
+================================== */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-direction: row;
-  background-color: #ffffff;
-  color: #330000;
-  border-bottom: 4px solid #778899;
+  flex-wrap: wrap;
   padding: 15px 20px;
+  background-color: #ffffff;
+  border-bottom: 4px solid #778899;
+  position: relative;
+  z-index: 100;
 }
-/*
-.header-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
 
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; /* ← 左寄せに変更 */
-
-*/
-
-/* ロゴ */
+/* ロゴ（左寄せ） */
 .logo {
-  margin: 0;
-  font-size: 1.5em;
-  margin-right: auto;
+  flex-shrink: 0;
 }
 
 .logo a {
@@ -1391,9 +1377,7 @@ header {
   object-fit: contain;
 }
 
-/* ==============================
-   メニューバー（PCデフォルト）
-============================== */
+/* メニューバー（PCでは横並び） */
 .menu-bar {
   display: flex;
   align-items: center;
@@ -1402,17 +1386,15 @@ header {
   gap: 20px;
   font-weight: bold;
   font-size: 1rem;
-  margin-top: 10px;
 }
 
 .menu-bar a {
-  color: #330000;
+  color: #090000;
   text-decoration: none;
   font-size: 18px;
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   letter-spacing: 0.5px;
-  position: relative;
   padding-bottom: 2px;
   border-bottom: 2px solid transparent;
   transition: border-color 0.3s ease;
@@ -1422,57 +1404,72 @@ header {
 .menu-bar a:hover {
   border-bottom-color: #2F4F4F;
 }
-.menu-bar.active {
-  display: flex !important;
-}
 
-
-/* 認証系ボタン（ログイン・マイページ・ログアウト） */
+/* 認証ボタン（右上） */
 .auth-button-right {
   display: flex;
+  align-items: center;
   gap: 12px;
+  margin-left: auto;
 }
 
-/* ハンバーガーボタン（スマホのみ表示） */
+.auth-button-right a,
+.auth-button-right button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: #42597a;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.auth-button-right a:hover,
+.auth-button-right button:hover {
+  opacity: 0.85;
+}
+
+/* ハンバーガーボタン（PCでは非表示） */
 .menu-toggle {
   display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: #42597a;
+  cursor: pointer;
+  margin-left: auto;
 }
 
-/* ==============================
-   スマホ表示（〜768px）
-============================== */
+/* ===============================
+   スマホ表示（768px以下）
+================================== */
 @media screen and (max-width: 768px) {
   header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-/*
-  .header-container {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
   }
-    */
+
+  .logo {
+    flex: 1;
+  }
 
   .menu-toggle {
     display: block;
-    font-size: 28px;
-    background: none;
-    border: none;
-    color: #42597a;
-    cursor: pointer;
-    margin-top: 10px;
   }
 
   .menu-bar {
     display: none;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
-    margin: 10px 0;
-    background-color: #fff;
+    background-color: white;
     padding: 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    position: absolute;
+    top: 100%;
+    left: 0;
   }
 
   .menu-bar.active {
@@ -1484,8 +1481,8 @@ header {
   .auth-button-right button {
     width: 100%;
     padding: 12px 0;
-    text-align: left;
     border-bottom: 1px solid #ddd;
+    text-align: left;
   }
 
   .auth-button-right {
@@ -1497,7 +1494,5 @@ header {
 
   .logo-img {
     height: 50px;
-    margin-bottom: 10px;
   }
 }
-
