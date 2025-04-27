@@ -6,43 +6,103 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <style>
-    .application-list ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .application-item {
-      background: #f7f9fc;
-      border-left: 4px solid #42597a;
-      padding: 12px 16px;
-      margin-bottom: 12px;
-      border-radius: 6px;
-    }
-
-    .section {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    h2 {
-      margin-bottom: 20px;
-      color: #333;
-    }
-
-    #profile-info ul {
-  list-style: none;
-  padding: 0;
-  line-height: 1.8;
+    /* プロフィールセクション */
+.profile-section, .application-history {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
-#profile-info li {
-  background: #f5f7fa;
-  border-left: 4px solid #42597a;
-  padding: 8px 12px;
-  margin-bottom: 8px;
+.profile-section h2, .application-history h3 {
+  color: #42597a;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#profile-form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+#profile-form input, 
+#profile-form select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-buttons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.btn-primary, .btn-secondary, .btn-outline {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: #42597a;
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: #778899;
+  color: #fff;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid #42597a;
+  color: #42597a;
+}
+
+.btn-outline:hover {
+  background-color: #42597a;
+  color: #fff;
+}
+
+.application-card {
+  border: 1px solid #ccc;
+  padding: 12px;
+  margin-bottom: 12px;
   border-radius: 6px;
+  background: #fdfdfd;
 }
+
+.account-actions {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.btn-danger:hover {
+  background-color: #c9302c;
+}
+
+
+
 
   </style>
 </head>
@@ -55,119 +115,310 @@
 
 
   <main>
-    <section class="section">
-      <h2>プロフィール情報</h2>
-      <div id="profile-info">
-        <p>読み込み中...</p>
-      </div>
+
+
+
+    <section class="profile-section">
+      <h2>My Profile</h2>
+      <form id="profile-form">
+        <!-- プロフィール入力欄（省略：今まで通り） -->
+        <label>Full Name</label>
+        <input type="text" id="fullName" disabled>
+      
+        <label>Nationality</label>
+        <input type="text" id="nationality" disabled>
+      
+        <label>Gender</label>
+        <select id="gender" disabled>
+          <option value="" disabled selected>Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      
+        <label>University</label>
+        <input type="text" id="university" disabled>
+      
+        <label>Degree</label>
+        <select id="degree" disabled>
+          <option value="" disabled selected>Select Degree</option>
+          <option value="Bachelor">Bachelor</option>
+          <option value="Master">Master</option>
+          <option value="PhD">PhD</option>
+          <option value="Other">Other</option>
+        </select>
+      
+        <label>Major</label>
+        <input type="text" id="major" disabled>
+      
+        <label>Graduation Year</label>
+        <select id="graduationYear" disabled>
+          <option value="" disabled selected>Select Year</option>
+          <script>
+            for (let y = 2024; y <= 2030; y++) {
+              document.write(`<option value="${y}">${y}</option>`);
+            }
+          </script>
+        </select>
+      
+        <label>Graduation Month</label>
+        <select id="graduationMonth" disabled>
+          <option value="" disabled selected>Select Month</option>
+          <script>
+            for (let m = 1; m <= 12; m++) {
+              const padded = m.toString().padStart(2, '0');
+              document.write(`<option value="${padded}">${padded}</option>`);
+            }
+          </script>
+        </select>
+      
+        <label>Preferred Industry</label>
+        <input type="text" id="industry" disabled>
+      
+        <label>Country</label>
+        <select id="country" disabled>
+          <option value="" disabled selected>Select Country</option>
+          <option value="Japan">Japan</option>
+          <option value="Malaysia">Malaysia</option>
+          <option value="Australia">Australia</option>
+          <option value="Other">Other</option>
+        </select>
+      
+        <label>City</label>
+        <input type="text" id="city" disabled>
+      
+        <label>Languages</label>
+        <div id="language-container"></div>
+        <button type="button" id="add-language" disabled>＋ Add Language</button>
+      
+        <div style="margin-top: 16px;">
+          <button type="button" id="edit-btn">Edit</button>
+          <button type="submit" id="save-btn" style="display: none;">Save</button>
+        </div>
+        <!-- ... Full Name, Nationality, Gender など ... -->
+    
+        <div class="form-buttons">
+          <button type="button" id="edit-btn" class="btn-primary">Edit</button>
+          <button type="submit" id="save-btn" class="btn-secondary" style="display:none;">Save</button>
+          <button type="button" id="add-language" class="btn-outline" disabled>＋ Add Language</button>
+        </div>
+      </form>
     </section>
     
-    <section class="section">
-      <h2>応募履歴</h2>
-      <div id="application-list" class="application-list">
-        <p>読み込み中...</p>
+    <section class="application-history">
+      <h3>Application History</h3>
+      <div id="applications-list">
+        <!-- 応募履歴がここに表示されます -->
       </div>
     </section>
-  </main>
 
-  <script type="module">
+    <div class="account-actions">
+      <button id="delete-account-btn" class="btn-danger">アカウントを削除する</button>
+    </div>
     
-    import {
-      initializeApp
-    } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-    import {
-      getAuth,
-      onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-    import {
-      getFirestore,
-      collection,
-      query,
-      where,
-      getDocs
-    } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
-    import {
-  doc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyB-kZseSpbFLvXYVBy5bmsw-M2jHVorLZ8",
-      authDomain: "cariaid.firebaseapp.com",
-      projectId: "cariaid",
-      storageBucket: "cariaid.appspot.com",
-      messagingSenderId: "388903287463",
-      appId: "1:388903287463:web:60cfe73f87131e47db7982"
-    };
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+      import { getAuth, onAuthStateChanged, deleteUser} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+      import { getFirestore, doc, getDoc, updateDoc, collection, query, where, getDocs, deleteDoc} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+    
+      const firebaseConfig = {
+  apiKey: "AIzaSyB-kZseSpbFLvXYVBy5bmsw-M2jHVorLZ8",
+  authDomain: "cariaid.firebaseapp.com",
+  projectId: "cariaid",
+  storageBucket: "cariaid.appspot.com",
+  messagingSenderId: "388903287463",
+  appId: "1:388903287463:web:60cfe73f87131e47db7982"
+};
 
-    const applicationList = document.getElementById('application-list');
-    const profileInfo = document.getElementById('profile-info');
-
-
-    onAuthStateChanged(auth, async (user) => {
-  if (!user) {
-    profileInfo.innerHTML = "<p>ログインしてください。</p>";
-    applicationList.innerHTML = "<p>ログインしてください。</p>";
-    return;
-  }
-
-  // 🔹 プロフィール情報取得
-  const userDocRef = doc(db, "users", user.uid);
-  const userSnap = await getDoc(userDocRef);
-
-  if (userSnap.exists()) {
-    const data = userSnap.data();
-    const languages = (data.languages || [])
-      .map(lang => `${lang.language}（${lang.level}）`).join(", ");
-
-    profileInfo.innerHTML = `
-      <ul>
-        <li><strong>氏名：</strong>${data.fullName || "未登録"}</li>
-        <li><strong>メール：</strong>${user.email}</li>
-        <li><strong>国籍：</strong>${data.nationality || "未登録"}</li>
-        <li><strong>大学：</strong>${data.university || "未登録"}</li>
-        <li><strong>学位：</strong>${data.degree || "未登録"}</li>
-        <li><strong>専攻：</strong>${data.major || "未登録"}</li>
-        <li><strong>卒業予定：</strong>${data.graduationYear || ""}年${data.graduationMonth || ""}月</li>
-        <li><strong>言語：</strong>${languages || "未登録"}</li>
-        <li><strong>志望業界：</strong>${data.preferredIndustry || "未登録"}</li>
-        <li><strong>居住地：</strong>${data.locationCountry || ""} / ${data.locationCity || ""}</li>
-        <li><strong>性別：</strong>${data.gender || "未登録"}</li>
-      </ul>
-    `;
-  } else {
-    profileInfo.innerHTML = "<p>プロフィール情報が見つかりません。</p>";
-  }
-
-  // 🔹 応募履歴取得
-  const q = query(collection(db, "applications"), where("uid", "==", user.uid));
-  const querySnapshot = await getDocs(q);
-
-  if (querySnapshot.empty) {
-    applicationList.innerHTML = "<p>応募履歴がありません。</p>";
-    return;
-  }
-
-  let html = "<ul>";
-  querySnapshot.forEach((doc) => {
-    const data = doc.data();
-    html += `
-      <li class="application-item">
-        <strong>${data.company}</strong><br>
-        職種：${data.jobTitle}<br>
-        応募日：${data.timestamp ? new Date(data.timestamp.toDate()).toLocaleDateString() : "不明"}
-      </li>`;
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+    
+      const form = document.getElementById("profile-form");
+      const inputs = form.querySelectorAll("input, select");
+      const editBtn = document.getElementById("edit-btn");
+      const saveBtn = document.getElementById("save-btn");
+      const addLangBtn = document.getElementById("add-language");
+      const langContainer = document.getElementById("language-container");
+    
+      function createLanguageField(language = "", level = "", disabled = true) {
+        const div = document.createElement("div");
+        div.classList.add("lang-item");
+    
+        const langInput = document.createElement("input");
+        langInput.placeholder = "Language";
+        langInput.value = language;
+        langInput.disabled = disabled;
+    
+        const levelInput = document.createElement("input");
+        levelInput.placeholder = "Level";
+        levelInput.value = level;
+        levelInput.disabled = disabled;
+    
+        div.appendChild(langInput);
+        div.appendChild(levelInput);
+        langContainer.appendChild(div);
+      }
+    
+      async function loadProfile(user) {
+        const userRef = doc(db, "users", user.uid);
+        const snap = await getDoc(userRef);
+        if (snap.exists()) {
+          const data = snap.data();
+          document.getElementById("fullName").value = data.fullName || "";
+          document.getElementById("nationality").value = data.nationality || "";
+          document.getElementById("gender").value = data.gender || "";
+          document.getElementById("university").value = data.university || "";
+          document.getElementById("degree").value = data.degree || "";
+          document.getElementById("major").value = data.major || "";
+          document.getElementById("graduationYear").value = data.graduationYear || "";
+          document.getElementById("graduationMonth").value = data.graduationMonth || "";
+          document.getElementById("industry").value = data.preferredIndustry || "";
+          document.getElementById("country").value = data.locationCountry || "";
+          document.getElementById("city").value = data.locationCity || "";
+    
+          langContainer.innerHTML = "";
+          (data.languages || []).forEach(lang => {
+            createLanguageField(lang.language, lang.level);
+          });
+        }
+      }
+    
+      async function loadApplications(user) {
+        const q = query(collection(db, "applications"), where("uid", "==", user.uid));
+        const snapshot = await getDocs(q);
+    
+        const listContainer = document.getElementById("applications-list");
+        listContainer.innerHTML = "";
+    
+        if (snapshot.empty) {
+          listContainer.innerHTML = "<p>No application history found.</p>";
+          return;
+        }
+    
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          const date = data.timestamp?.toDate().toLocaleDateString() || "Unknown date";
+          const div = document.createElement("div");
+          div.classList.add("application-card");
+          div.innerHTML = `
+            <p>📍 <strong>Company:</strong> ${data.company}</p>
+            <p><strong>Applied on:</strong> ${date}</p>
+          `;
+          listContainer.appendChild(div);
+        });
+      }
+    
+      // === プロフィール＆応募履歴読み込み ===
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      loadProfile(user);
+      loadApplications(user);
+      setupDeleteAccount(user);  // ← 削除ボタンもここでセット
+    } else {
+      alert("ログインが必要です。");
+      window.location.href = "loguin_en.html";
+    }
   });
-  html += "</ul>";
-  applicationList.innerHTML = html;
-});
+    
+      editBtn.addEventListener("click", () => {
+        inputs.forEach(el => el.disabled = false);
+        addLangBtn.disabled = false;
+        editBtn.style.display = "none";
+        saveBtn.style.display = "inline-block";
+        langContainer.querySelectorAll("input").forEach(input => input.disabled = false);
+      });
+    
+      addLangBtn.addEventListener("click", () => {
+        createLanguageField("", "", false);
+      });
+    
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const user = auth.currentUser;
+        if (!user) return;
+    
+        const languages = [];
+        langContainer.querySelectorAll(".lang-item").forEach(div => {
+          const [langInput, levelInput] = div.querySelectorAll("input");
+          if (langInput.value && levelInput.value) {
+            languages.push({ language: langInput.value, level: levelInput.value });
+          }
+        });
+    
+        const updated = {
+          fullName: document.getElementById("fullName").value,
+          nationality: document.getElementById("nationality").value,
+          gender: document.getElementById("gender").value,
+          university: document.getElementById("university").value,
+          degree: document.getElementById("degree").value,
+          major: document.getElementById("major").value,
+          graduationYear: document.getElementById("graduationYear").value,
+          graduationMonth: document.getElementById("graduationMonth").value,
+          preferredIndustry: document.getElementById("industry").value,
+          locationCountry: document.getElementById("country").value,
+          locationCity: document.getElementById("city").value,
+          languages
+        };
+    
+        await updateDoc(doc(db, "users", user.uid), updated);
+    
+        inputs.forEach(el => el.disabled = true);
+        addLangBtn.disabled = true;
+        saveBtn.style.display = "none";
+        editBtn.style.display = "inline-block";
+        langContainer.querySelectorAll("input").forEach(input => input.disabled = true);
+        alert("Profile updated!");
+      });
 
 
-  </script>
+
+      
+  // === アカウント削除処理 ===
+  function setupDeleteAccount(user) {
+    document.getElementById("delete-account-btn").addEventListener("click", async () => {
+      const confirmation = confirm("本当にアカウントを削除しますか？この操作は元に戻せません。");
+      if (!confirmation) return;
+
+      try {
+        await deleteDoc(doc(db, "users", user.uid));   // Firestoreから削除
+        await deleteUser(user);                        // 認証から削除
+
+        alert("アカウントを削除しました。ご利用ありがとうございました。");
+        window.location.href = "index.html";
+      } catch (error) {
+        if (error.code === 'auth/requires-recent-login') {
+          alert("セキュリティ上の理由で、再ログインが必要です。ログインし直してください。");
+          window.location.href = "loguin_en.html";
+        } else {
+          console.error("削除エラー:", error);
+          alert("アカウント削除に失敗しました。再度お試しください。");
+        }
+      }
+    });
+  }
+
+
+
+
+
+
+    </script>
+    
+    
+
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
